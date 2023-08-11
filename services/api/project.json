@@ -1,0 +1,18 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "services/api",
+  "targets": {
+    "build": {
+      "executor": "@raftlabs/nx-hasura:build"
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "concurrently \"(docker stop db api || echo nm) && docker run --name=db --rm -p 5432:5432 -i -e POSTGRES_PASSWORD=postgrespassword postgres:13-alpine\" \"docker build services/api -t api -f services/api/Dockerfile && (docker stop api || echo nm) && wait-on -d 2000 tcp:localhost:5432 && wait-on -d 2000 tcp:localhost:5432 && docker run --name=api --env-file services/api/.env -p 8080:8080 -e HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgrespassword@host.docker.internal:5432/postgres --rm -i api\" \"wait-on tcp:localhost:8080 && hasura --skip-update-check --project services/api console\""
+      }
+    }
+  },
+  "tags": []
+}

@@ -44,5 +44,8 @@
         "linter": "eslint"
       }
     }
+  },
+  "workspaceLayout": {
+    "servicesDir": "services"
   }
 }
