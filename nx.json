@@ -22,5 +22,15 @@
         "{workspaceRoot}/.eslintignore"
       ]
     }
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true
+      },
+      "library": {
+        "unitTestRunner": "vitest"
+      }
+    }
   }
 }

@@ -15,9 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@curltocsv/images": ["libs/images/src/index.ts"],
       "@curltocsv/isomorphic-validation": [
         "libs/isomorphic-validation/src/index.ts"
-      ]
+      ],
+      "@curltocsv/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
